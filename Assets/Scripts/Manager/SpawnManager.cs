@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     public static SpawnManager instance;
     public Transform[] positions;
 
-    [HideInInspector]public GameObject playerLocal;
+    public GameObject playerLocal;
     public GameObject panelLoadAvatar;
 
     private void Awake()

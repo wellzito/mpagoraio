@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249325d613c3ea14b9ad60886500facf, type: 3}
+  m_Name: EmojisDatabase
+  m_EditorClassIdentifier: 
+  m_emojisData:
+  - m_emojiName: thumbsup
+    m_emojiSprite: {fileID: 21300000, guid: 53e13788b5a826345a90f259aa7e4210, type: 3}
+  - m_emojiName: heart
+    m_emojiSprite: {fileID: 21300000, guid: 036e3491b28cfa54585def50a5c54002, type: 3}
+  - m_emojiName: happy
+    m_emojiSprite: {fileID: 21300000, guid: 4aa7e01f848c423429d32185775adb54, type: 3}
+  - m_emojiName: crazy
+    m_emojiSprite: {fileID: 21300000, guid: 27704d1985370654bb9324f68325f1fc, type: 3}
+  - m_emojiName: laughing
+    m_emojiSprite: {fileID: 21300000, guid: 2c25293882feeaa45b44ff648c05f866, type: 3}
+  - m_emojiName: astonished
+    m_emojiSprite: {fileID: 21300000, guid: 4f4246f4f77660140bc75a041d430c89, type: 3}
+  - m_emojiName: cry1
+    m_emojiSprite: {fileID: 21300000, guid: b65cfea54813c9d42ae6a878e224bd69, type: 3}
+  - m_emojiName: cry2
+    m_emojiSprite: {fileID: 21300000, guid: 60c81338d0a29f44dbd574425292d403, type: 3}
+  - m_emojiName: cry3
+    m_emojiSprite: {fileID: 21300000, guid: 9a4d6d095028c754990a4c6a902d395c, type: 3}
+  - m_emojiName: praying
+    m_emojiSprite: {fileID: 21300000, guid: 75c40c75fc2eebb4e9de55109d148187, type: 3}
+  - m_emojiName: angry
+    m_emojiSprite: {fileID: 21300000, guid: 9e4c0426dab7c4e449f889755c06d8c4, type: 3}

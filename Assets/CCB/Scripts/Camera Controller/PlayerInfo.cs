@@ -29,10 +29,11 @@ public class PlayerInfo : NetworkBehaviour
     private ReadyPlayerMe.Samples.QuickStart.CameraFollow cameraFollow;
     public Transform targetCam;
     public bool onVideoShare;
-
-    public AgoraLocalCharacter agoraLocal;
     public bool onLoadAvatarExternal;
     public bool onInputExternal = false;
+    public ActionsPlayerController actionsPlayer;
+    public bool onActionEmoji = false;
+    public string keyEmoji;
     private void Start()
     {
         _kcc = GetComponent<KCC>();
@@ -84,15 +85,10 @@ public class PlayerInfo : NetworkBehaviour
 
         if (HasInputAuthority)
         {
+            //if (onActionEmoji) { onActionEmoji = false; RPC_Reactions(keyEmoji); }
             if (onInputExternal) { onInputExternal = false; RPC_AvatarExternal(true); }
             if (Input.GetKeyDown(KeyCode.F2)) { RPC_AvatarExternal(false); RPC_Skin(1); }
             if (Input.GetKeyDown(KeyCode.F1)) { RPC_AvatarExternal(false); RPC_Skin(-1); }
-
-            if (onVideoShare)
-            {
-                onVideoShare = false;
-              //  RPC_ScreenShare();
-            }
         }
 
     }
@@ -238,11 +234,18 @@ public class PlayerInfo : NetworkBehaviour
     public void RPC_AvatarExternal(bool val)
     {
         onLoadAvatarExternal = val;
+        RPC_AvatarExternalSet(PlayerPrefs.GetString("myPlayer"));
     }
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
     public void RPC_AvatarExternalSet(string value)
     {
         avatarLoad.OnLoadAvatarLink(value);
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_Reactions(string value)
+    {
+        actionsPlayer.ShowCharacterReaction(value);
     }
     #endregion
 }

@@ -182,8 +182,8 @@ GameObject:
   - component: {fileID: 706548248099361710}
   - component: {fileID: 5850449662306275060}
   - component: {fileID: -3456434252816637095}
-  - component: {fileID: 4238535678983688728}
   - component: {fileID: 1452879969727131609}
+  - component: {fileID: 8499533373429746440}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -212,6 +212,7 @@ Transform:
   - {fileID: 2227419805496373008}
   - {fileID: 2083723433749216063}
   - {fileID: 8491487830822575057}
+  - {fileID: 2941627639445079442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1193768775445003968
@@ -312,17 +313,18 @@ MonoBehaviour:
   isLocalPlayer: 0
   _anim: {fileID: 0}
   _playerMovement: {fileID: 0}
-  __skinUrl:
-    _length: 0
-    _data:
-      Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   __skinIndex: 0
+  lastSkinIndex: -1
   _kcc: {fileID: 0}
   avatarLoad: {fileID: 5850449662306275060}
   cameraOrbit: {fileID: 0}
   targetCam: {fileID: 8491487830822575057}
   onVideoShare: 0
-  agoraLocal: {fileID: 4238535678983688728}
+  onLoadAvatarExternal: 0
+  onInputExternal: 0
+  actionsPlayer: {fileID: 8499533373429746440}
+  onActionEmoji: 0
+  keyEmoji: 
 --- !u!114 &6730974915464013993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +483,6 @@ MonoBehaviour:
   thirdPersonLoader: {fileID: 6256560725561678395}
   onSelect: 0
   localCam: 0
-  currentURL: 
 --- !u!114 &-3456434252816637095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,28 +497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivityX: 1
   mouseSensitivityY: 0.8
---- !u!114 &4238535678983688728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100991439649316119}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cca2f147daf96844bc829ed82b6761e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UID: 0
-  IsVideoOn: 1
-  IsAudioOn: 1
-  audioIcon: {fileID: 2044470588722244729}
-  muteAudioSprite: {fileID: 21300000, guid: 19d8457b853d49a439647e164038a3e9, type: 3}
-  onAudioSprite: {fileID: 21300000, guid: f21b0e0ffb9d7ba498a0e3689f1e0093, type: 3}
-  audioSpeakingOutline: {fileID: 7331804847643950641}
-  panelSound: {fileID: 879281158242430863}
-  agoraController: {fileID: 0}
-  webcamVideo: {fileID: 287677230408770914}
 --- !u!114 &1452879969727131609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +518,21 @@ MonoBehaviour:
   onAudioSprite: {fileID: 21300000, guid: f21b0e0ffb9d7ba498a0e3689f1e0093, type: 3}
   audioSpeakingOutline: {fileID: 7331804847643950641}
   panelSound: {fileID: 879281158242430863}
+--- !u!114 &8499533373429746440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100991439649316119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697e3b6cf653fbd45883df256fed56b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emojiParticles: {fileID: 5943887076873003352}
+  playerReactionsTable: {fileID: 11400000, guid: 9c3141938afa2b44a8a15829dbfef473, type: 2}
+  playerInfo: {fileID: -1684676281094888932}
 --- !u!1 &3242186808209966566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,6 +1930,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84767d614b3c1cc4cb07d156e7d52aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &8365812830906231984
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4569134217490955249}
+    m_Modifications:
+    - target: {fileID: 705780033415619683, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_Name
+      value: EmojiParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766823979155901928, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766823979155901928, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.475
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+--- !u!4 &2941627639445079442 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6686601567024081186, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+  m_PrefabInstance: {fileID: 8365812830906231984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5943887076873003352 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2766823979155901928, guid: 9db58f7c6e3a978488deb15fcc315655, type: 3}
+  m_PrefabInstance: {fileID: 8365812830906231984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8533874060111653949
 PrefabInstance:
   m_ObjectHideFlags: 0
