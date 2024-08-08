@@ -6,7 +6,6 @@ public class ActionsPlayerController : MonoBehaviour
 {
     [SerializeField] private ParticleSystem emojiParticles;
     [SerializeField] private PlayerReactionsTable playerReactionsTable;
-    [SerializeField] PlayerInfo playerInfo;
 
     #region Emoji
     public void ShowCharacterReaction(string reactionName)
@@ -15,9 +14,6 @@ public class ActionsPlayerController : MonoBehaviour
         Sprite sprite = playerReactionsTable.GetSpriteByName(reactionName);
         emojiParticles.textureSheetAnimation.SetSprite(0, sprite);
         emojiParticles.Play();
-        playerInfo.keyEmoji = reactionName;
-        playerInfo.onActionEmoji = true;
-        playerInfo.RPC_Reactions(reactionName);
     }
 
     #endregion

@@ -33,7 +33,7 @@ namespace ReadyPlayerMe.Samples.QuickStart
         
         private void LateUpdate()
         {
-            if (isFollowing)
+            if (isFollowing && target)
             {
                 playerCamera.transform.localPosition = Vector3.forward * cameraDistance;
                 playerCamera.transform.localRotation = Quaternion.Euler(Vector3.zero);

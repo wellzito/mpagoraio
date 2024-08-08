@@ -20,6 +20,10 @@ public class EmojiMenu : MonoBehaviour
 
     public void SetEmoji(string value)
     {
+        PlayerPrefs.SetString("keyEmoji", value);
+        SpawnManager.instance.playerLocal.GetComponent<PlayerInfo>().onActionEmoji = true;
         SpawnManager.instance.playerLocal.GetComponent<ActionsPlayerController>().ShowCharacterReaction(value);
+        //SpawnManager.instance.playerLocal.GetComponent<PlayerInfo>().RPC_Reactions(PlayerPrefs.GetString("keyEmoji"));
+
     }
 }

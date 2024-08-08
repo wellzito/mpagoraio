@@ -154,9 +154,9 @@ public class PlayerSpawner : SimulationBehaviour, INetworkRunnerCallbacks
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) {
         if(!isMenu)
-        SceneManager.LoadScene("Stadium_Scene");
+        SceneManager.LoadScene("Gameplay");
         else
-            SceneManager.LoadScene("MainMenu_Scene");
+            SceneManager.LoadScene("Gameplay");
     }
     public void OnConnectedToServer(NetworkRunner runner) { }
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }

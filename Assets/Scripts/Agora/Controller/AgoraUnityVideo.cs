@@ -93,10 +93,6 @@ public class AgoraUnityVideo : MonoBehaviour
         AgoraLocal playerInput = SpawnManager.instance.playerLocal.GetComponent<AgoraLocal>();
         LocalCharacter = playerInput;
     }
-    private void OnDisable()
-    {
-        mRtcEngine.OnVolumeIndication -= VolumeIndication;
-    }
 
     public void Leave()
     {

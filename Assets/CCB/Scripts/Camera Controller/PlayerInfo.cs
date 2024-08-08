@@ -23,6 +23,10 @@ public class PlayerInfo : NetworkBehaviour
     //[Networked] public NetworkString<_64> _skinUrl { get; set; }
     [Networked] public int _skinIndex { get; set; }
     public int lastSkinIndex = -1;
+
+    [Networked] public int _emojiIndex { get; set; }
+    public int lastEmojiIndex = -1;
+
     public KCC _kcc;
     public AvatarLoadMP avatarLoad;
     public ReadyPlayerMe.Samples.QuickStart.CameraOrbit cameraOrbit;
@@ -33,7 +37,7 @@ public class PlayerInfo : NetworkBehaviour
     public bool onInputExternal = false;
     public ActionsPlayerController actionsPlayer;
     public bool onActionEmoji = false;
-    public string keyEmoji;
+    [Networked] public NetworkString<_64> keyEmoji { get; set; }
     private void Start()
     {
         _kcc = GetComponent<KCC>();
@@ -83,9 +87,15 @@ public class PlayerInfo : NetworkBehaviour
             ChangeSkin();
         }
 
+        if(_emojiIndex != lastEmojiIndex)
+        {
+            lastEmojiIndex = _emojiIndex;
+            actionsPlayer.ShowCharacterReaction((string)keyEmoji);
+        }
+
         if (HasInputAuthority)
         {
-            //if (onActionEmoji) { onActionEmoji = false; RPC_Reactions(keyEmoji); }
+            if (onActionEmoji) { onActionEmoji = false; RPC_Reactions(PlayerPrefs.GetString("keyEmoji")); }
             if (onInputExternal) { onInputExternal = false; RPC_AvatarExternal(true); }
             if (Input.GetKeyDown(KeyCode.F2)) { RPC_AvatarExternal(false); RPC_Skin(1); }
             if (Input.GetKeyDown(KeyCode.F1)) { RPC_AvatarExternal(false); RPC_Skin(-1); }
@@ -234,18 +244,26 @@ public class PlayerInfo : NetworkBehaviour
     public void RPC_AvatarExternal(bool val)
     {
         onLoadAvatarExternal = val;
-        RPC_AvatarExternalSet(PlayerPrefs.GetString("myPlayer"));
     }
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
     public void RPC_AvatarExternalSet(string value)
     {
         avatarLoad.OnLoadAvatarLink(value);
+        Debug.Log($"{gameObject.name} LoadAvatar");
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
     public void RPC_Reactions(string value)
     {
-        actionsPlayer.ShowCharacterReaction(value);
+        keyEmoji = value;
+        _emojiIndex = Random.Range(_emojiIndex + 1, 50);
+        //actionsPlayer.ShowCharacterReaction(value);
+        Debug.Log($"{gameObject.name} Emoji Reaction");
+    }
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_OnEmoji(bool val)
+    {
+        onActionEmoji = val;
     }
     #endregion
 }
