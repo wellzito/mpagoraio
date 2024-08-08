@@ -49,7 +49,7 @@ public class AvatarLoadPanel : MonoBehaviour
         // p.onInputExternal = true;
         p.onInputExternal = true;
         p.avatarLoad.OnLoadAvatarLink(avatarUrlField.text);
-        p.RPC_AvatarExternalSet(avatarUrlField.text);
+        //p.RPC_AvatarExternalSet(avatarUrlField.text);
         PlayerPrefs.SetString("myPlayer", avatarUrlField.text);
         OnCloseButton();
     }

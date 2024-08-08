@@ -24,6 +24,10 @@ public class PlayerInfo : NetworkBehaviour
     [Networked] public int _skinIndex { get; set; }
     public int lastSkinIndex = -1;
 
+    [Networked] public int _skinExternalIndex { get; set; }
+    public int lastSkinExternalIndex = -1;
+    [Networked] public NetworkString<_64> keySkin { get; set; }
+
     [Networked] public int _emojiIndex { get; set; }
     public int lastEmojiIndex = -1;
 
@@ -87,6 +91,12 @@ public class PlayerInfo : NetworkBehaviour
             ChangeSkin();
         }
 
+        if(_skinExternalIndex != lastSkinExternalIndex)
+        {
+            _skinExternalIndex = lastSkinExternalIndex;
+            ChangeSkinExternal((string)keySkin);
+        }
+
         if(_emojiIndex != lastEmojiIndex)
         {
             lastEmojiIndex = _emojiIndex;
@@ -96,9 +106,9 @@ public class PlayerInfo : NetworkBehaviour
         if (HasInputAuthority)
         {
             if (onActionEmoji) { onActionEmoji = false; RPC_Reactions(PlayerPrefs.GetString("keyEmoji")); }
-            if (onInputExternal) { onInputExternal = false; RPC_AvatarExternal(true); }
-            if (Input.GetKeyDown(KeyCode.F2)) { RPC_AvatarExternal(false); RPC_Skin(1); }
-            if (Input.GetKeyDown(KeyCode.F1)) { RPC_AvatarExternal(false); RPC_Skin(-1); }
+            if (onInputExternal) { onInputExternal = false; RPC_AvatarExternal(PlayerPrefs.GetString("myPlayer")); }
+            if (Input.GetKeyDown(KeyCode.F2)) { RPC_Skin(1); }
+            if (Input.GetKeyDown(KeyCode.F1)) { RPC_Skin(-1); }
         }
 
     }
@@ -209,6 +219,11 @@ public class PlayerInfo : NetworkBehaviour
         avatarLoad.OnLoadAvatarLink(PlayerPrefs.GetString("myPlayer"));
     }
 
+    public void ChangeSkinExternal(string value)
+    {
+        avatarLoad.OnLoadAvatarLink(value);
+    }
+
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
     public void RPC_SkinChange(string value)
     {
@@ -241,29 +256,28 @@ public class PlayerInfo : NetworkBehaviour
         AgoraUnityVideo.Instance.StartShare();
     }
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void RPC_AvatarExternal(bool val)
+    public void RPC_AvatarExternal(string value)
     {
-        onLoadAvatarExternal = val;
-    }
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void RPC_AvatarExternalSet(string value)
-    {
-        avatarLoad.OnLoadAvatarLink(value);
-        Debug.Log($"{gameObject.name} LoadAvatar");
+        keySkin = value;
+        List<int> possibleValues = Enumerable.Range(0, 250).ToList();
+        possibleValues.Remove(_skinExternalIndex);
+
+        int newSkinIndex = possibleValues[Random.Range(0, possibleValues.Count)];
+        _skinExternalIndex = newSkinIndex;
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
     public void RPC_Reactions(string value)
     {
         keyEmoji = value;
-        _emojiIndex = Random.Range(_emojiIndex + 1, 50);
+       // _emojiIndex = Random.Range(_emojiIndex + 1, 50);
+        List<int> possibleValues = Enumerable.Range(0, 250).ToList();
+        possibleValues.Remove(_emojiIndex);
+
+        int newEmojiIndex = possibleValues[Random.Range(0, possibleValues.Count)];
+        _emojiIndex = newEmojiIndex;
         //actionsPlayer.ShowCharacterReaction(value);
         Debug.Log($"{gameObject.name} Emoji Reaction");
-    }
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void RPC_OnEmoji(bool val)
-    {
-        onActionEmoji = val;
     }
     #endregion
 }
