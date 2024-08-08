@@ -20,8 +20,6 @@ namespace CCB.Controller
         {
             if (PlayerSpawner.instance == null) return;
 
-            SoundController.instance.SoundType(n);
-
         }
 
     }

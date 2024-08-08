@@ -14,7 +14,7 @@ namespace ReadyPlayerMe.Samples.QuickStart
         [SerializeField][Tooltip("Defines the camera distance from the player along Z (forward) axis. Value should be negative to position behind the player")]
         private float cameraDistance = -2.4f;
         [SerializeField] private bool followOnStart = true;
-        private bool isFollowing;
+        private bool isFollowing = true;
         
         private void Start()
         {

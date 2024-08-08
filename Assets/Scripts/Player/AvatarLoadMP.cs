@@ -16,12 +16,10 @@ public class AvatarLoadMP : MonoBehaviour
     public bool localCam;
     ReadyPlayerMe.Samples.QuickStart.CameraFollow cameraFollow;
     ReadyPlayerMe.Samples.QuickStart.CameraOrbit cameraOrbit;
+    public PlayerInput playerInput;
 
     private void Start()
     {
-        cameraOrbit = FindObjectOfType<CameraOrbit>();
-        cameraFollow = cameraOrbit.cameraFollow;
-
         AnalyticsRuntimeLogger.EventLogger.LogRunQuickStartScene();
     }
 
@@ -58,7 +56,9 @@ public class AvatarLoadMP : MonoBehaviour
 
         if (localCam)
         {
-            cameraOrbit.playerInput = GetComponent<PlayerInput>();
+            cameraOrbit = FindObjectOfType<CameraOrbit>();
+            cameraFollow = cameraOrbit.cameraFollow;
+            cameraOrbit.playerInput = playerInput;
         }
     }
 }

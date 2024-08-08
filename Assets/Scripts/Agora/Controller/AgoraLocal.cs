@@ -46,20 +46,6 @@ public class AgoraLocal : MonoBehaviour
         }
     }
 
-    /* private void Update()
-     {
-         if (AgoraUnityVideo.Instance.LocalUserId != 0 && playerInfo.isLocalPlayer)
-         {
-             UID = AgoraUnityVideo.Instance.LocalUserId;
-
-             if (oneshotCam)
-             {
-                 oneshotCam = false;
-                 ExternalInit(UID);
-             }
-         }
-     }*/
-
     public void ExternalInit(uint uid)
     {
         AgoraCharacterData characterData = new AgoraCharacterData() { characterInstance = this };
@@ -78,4 +64,11 @@ public class AgoraLocal : MonoBehaviour
         public AgoraLocal characterInstance;
         public bool hasWebcamInitialized;
     }
+}
+
+public enum AgoraVideoType
+{
+    None,
+    Video2D,
+    Video3D
 }

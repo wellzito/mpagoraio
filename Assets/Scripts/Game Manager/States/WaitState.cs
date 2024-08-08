@@ -78,7 +78,7 @@ namespace CCB.Controller
         [Rpc(RpcSources.StateAuthority, RpcTargets.All, HostMode = RpcHostMode.SourceIsServer)]
         public void RPC_DisableLoadPanel()
         {
-            ConnectPopupUI.instance.EnableObj(false);
+            
         }
 
     }

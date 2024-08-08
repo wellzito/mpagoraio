@@ -24,9 +24,6 @@ namespace CCB.Controller
         IEnumerator ChangeToBaseState()
         {
             isChangingStateBase = true;
-            BallCollision.instance.rb.velocity = Vector3.zero;
-            BallCollision.instance.transform.position = new Vector3(0, 10, 0);
-
             yield return new WaitForSeconds(.5f);
 
             _MatchStateInfo = (int)MatchState.START;

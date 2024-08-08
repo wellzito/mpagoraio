@@ -41,6 +41,11 @@ namespace ReadyPlayerMe.Samples.QuickStart
             y = angles.x;
         }
 
+        private void Update()
+        {
+            if (!cameraFollow.enabled) cameraFollow.enabled = true;
+        }
+
         private void LateUpdate()
         {
             if (cameraFollow.target)

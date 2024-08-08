@@ -2,7 +2,6 @@ using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Fusion;
 using Unity.VisualScripting;
 using System.Text.RegularExpressions;
 namespace CCB.Controller
@@ -45,7 +44,6 @@ namespace CCB.Controller
             {
                 player1Score++;
                 
-                //animacao e bagulho todo
             }
             else
             {
@@ -53,13 +51,11 @@ namespace CCB.Controller
             }
 
             _MatchStateInfo = (int)MatchState.GOAL;
-            //BallCollision.instance.RPC_ResetBallPosition();
         }
 
         IEnumerator ChangeToGoalState()
         {
             isChangingStateStart = true;
-            BallCollision.instance.RPC_ResetBallPosition();
 
             yield return new WaitForSeconds(.5f);
 
