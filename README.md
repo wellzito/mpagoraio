@@ -25,3 +25,4 @@ Voice, Video Call, ScreenShare, Emoji Reactions, Ready Player me.
 ![](loadavatar.png)
 
 support Windows
+Build Link -> https://drive.usercontent.google.com/download?id=1_9IIEZ8jJrUV8K-VlW9k_SB-CHWt6GyH&export=download
